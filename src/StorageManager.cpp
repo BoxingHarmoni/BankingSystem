@@ -21,7 +21,7 @@ void StorageManager::seedDefaultData(std::vector<Account>& accounts) {
         "Адміністратор Банку",
         Utils::sha256("admin123"),
         "+380800500000",
-        "admin@geminibool.ua",
+        "admin@formatail.bank",
         0.0,
         "UAH",
         false,
@@ -173,7 +173,7 @@ bool StorageManager::saveAccounts(const std::vector<Account>& accounts) {
     }
 
     outFile << "{\n"
-            << "  \"bank\": \"Gemini Bank Ukraine\",\n"
+            << "  \"bank\": \"Bank Forma Tail\",\n"
             << "  \"updatedAt\": \"" << Utils::getCurrentDateTime() << "\",\n"
             << "  \"accounts\": [\n";
 
@@ -196,7 +196,7 @@ bool StorageManager::exportStatement(const Account& account, const std::string& 
 
     file << "========================================================================================\n";
     file << "                                ОФІЦІЙНА ВИПИСКА ПО РАХУНКУ                              \n";
-    file << "                                  \"GEMINI NATIONAL BANK\"                                \n";
+    file << "                                     \"BANK FORMA TAIL\"                                  \n";
     file << "========================================================================================\n\n";
 
     file << "Власник рахунку:    " << account.getFullName() << "\n";
@@ -258,7 +258,7 @@ bool StorageManager::exportStatement(const Account& account, const std::string& 
     }
 
     file << "========================================================================================\n";
-    file << "Дякуємо, що користуєтесь Gemini Bank! Бажаємо фінансового процвітання.\n";
+    file << "Дякуємо, що користуєтесь Bank Forma Tail! Бажаємо фінансового процвітання.\n";
     file.close();
     return true;
 }

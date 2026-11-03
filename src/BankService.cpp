@@ -187,7 +187,7 @@ OperationResult BankService::withdraw(Account* account, double amount, const std
     if (amount <= 0.0) return OperationResult::INVALID_AMOUNT;
     if (account->getBalance() < amount) return OperationResult::INSUFFICIENT_FUNDS;
 
-    if (!account->withdraw(amount, "Банкомат Gemini ATM", description)) {
+    if (!account->withdraw(amount, "Банкомат ATM Forma Tail", description)) {
         return OperationResult::STORAGE_ERROR;
     }
 

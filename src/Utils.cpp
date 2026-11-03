@@ -334,7 +334,7 @@ namespace Utils {
                   << "  │  ██║   ██║██╔══╝  ██║╚██╔╝██║██║██║╚██╗██║██║    ██╔══██╗██╔══██║██║╚██╗██║ │\n"
                   << "  │  ╚██████╔╝███████╗██║ ╚═╝ ██║██║██║ ╚████║██║    ██████╔╝██║  ██║██║ ╚████║ │\n"
                   << "  │   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ │\n"
-                  << "  │  " << Color::BRIGHT_WHITE << "                   N A T I O N A L   B A N K   •   U A                     " << Color::CYAN << "│\n"
+                  << "  │  " << Color::BRIGHT_WHITE << "                   B A N K   F O R M A   T A I L                   " << Color::CYAN << "│\n"
                   << "  ╰─────────────────────────────────────────────────────────────────────────────╯\n"
                   << Color::RESET;
     }
@@ -359,8 +359,8 @@ namespace Utils {
 
         std::cout << "\n"
                   << "  " << Color::BLUE << "╭──────────────────────────────────────────────────────────────╮\n"
-                  << "  │ " << Color::BRIGHT_WHITE << Color::BOLD << "GEMINI PRIVATE BANKING" 
-                  << Color::BLUE << "                      " 
+                  << "  │ " << Color::BRIGHT_WHITE << Color::BOLD << "BANK FORMA TAIL PLATINUM" 
+                  << Color::BLUE << "                    " 
                   << Color::BRIGHT_YELLOW << "VISA " << Color::WHITE << "Infinite" << Color::BLUE << " │\n"
                   << "  │                                                              │\n"
                   << "  │   " << Color::BRIGHT_YELLOW << "[ ▣ CHIP ]" 
@@ -387,7 +387,7 @@ namespace Utils {
         std::cout << "\n" << Color::BRIGHT_CYAN
                   << "  ╔══════════════════════════════════════════════════════════════╗\n"
                   << "  ║                 ФІСКАЛЬНИЙ ЧЕК ТРАНЗАКЦІЇ                    ║\n"
-                  << "  ║                   GEMINI NATIONAL BANK                       ║\n"
+                  << "  ║                     BANK FORMA TAIL                          ║\n"
                   << "  ╠══════════════════════════════════════════════════════════════╣\n"
                   << Color::RESET;
 

@@ -2,11 +2,11 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 
-if not exist bin\BankingSystem.exe (
-    echo [!] Виконуваний файл не знайдено. Спочатку запускаємо build.bat...
+if not exist bin\BankFormaTailApp.exe (
+    echo [!] Файли не скомпільовані. Запускаємо build.bat...
     call build.bat
+    exit /b
 )
 
-if exist bin\BankingSystem.exe (
-    bin\BankingSystem.exe
-)
+:: Запуск красивого десктопного GUI вікна
+start "" "bin\BankFormaTailApp.exe"

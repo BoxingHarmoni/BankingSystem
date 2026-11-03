@@ -43,7 +43,7 @@ void ConsoleUI::run() {
             handleAbout();
         } else if (choice == 4) {
             clearScreen();
-            std::cout << Color::BRIGHT_GREEN << "\n  [✓] Дякуємо за користування Gemini Bank! Бажаємо фінансового процвітання!\n\n" << Color::RESET;
+            std::cout << Color::BRIGHT_GREEN << "\n  [✓] Дякуємо за користування Bank Forma Tail! Бажаємо фінансового процвітання!\n\n" << Color::RESET;
             break;
         }
     }
@@ -109,7 +109,7 @@ void ConsoleUI::handleRegister() {
 
 void ConsoleUI::handleAbout() {
     showHeader("ДОВІДКА ТА ТЕСТОВІ АКАУНТИ");
-    std::cout << "Система Gemini Bank розроблена на C++20 з повною підтримкою:\n";
+    std::cout << "Система Bank Forma Tail розроблена на C++20 з повною підтримкою:\n";
     std::cout << " • Збереження стану в JSON форматі (файл: data/bank_data.json)\n";
     std::cout << " • Хешування паролів за стандартом SHA-256\n";
     std::cout << " • Банківські операції: поповнення, зняття, миттєві перекази\n";
@@ -232,11 +232,11 @@ void ConsoleUI::handleWithdraw() {
         return;
     }
 
-    OperationResult res = bank_.withdraw(currentUser_, amount, "Зняття в банкоматі Gemini ATM");
+    OperationResult res = bank_.withdraw(currentUser_, amount, "Зняття в банкоматі ATM Forma Tail");
     if (res == OperationResult::SUCCESS) {
         const auto& txs = currentUser_->getTransactions();
         std::string txId = txs.empty() ? "TX-AUTO" : txs.back().getId();
-        renderReceipt(txId, "ЗНЯТТЯ ГОТІВКИ В ATM", amount, currentUser_->getBalance(), "Банкомат Gemini ATM", "Видача готівки", getCurrentDateTime());
+        renderReceipt(txId, "ЗНЯТТЯ ГОТІВКИ В ATM", amount, currentUser_->getBalance(), "Банкомат ATM Forma Tail", "Видача готівки", getCurrentDateTime());
     } else {
         std::cout << "\n" << Color::RED << "[!] " << getResultMessage(res) << Color::RESET << "\n";
     }

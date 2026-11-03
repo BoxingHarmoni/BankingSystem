@@ -1,6 +1,6 @@
 {
-  "bank": "Gemini Bank Ukraine",
-  "updatedAt": "2026-11-03 19:19:48",
+  "bank": "Bank Forma Tail",
+  "updatedAt": "2026-11-03 19:30:00",
   "accounts": [
   {
     "accountNumber": "UA000000000000000000000000000",
@@ -9,7 +9,7 @@
     "fullName": "Адміністратор Банку",
     "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
     "phone": "+380800500000",
-    "email": "admin@geminibool.ua",
+    "email": "admin@formatail.bank",
     "balance": 0.00,
     "currency": "UAH",
     "isFrozen": false,
