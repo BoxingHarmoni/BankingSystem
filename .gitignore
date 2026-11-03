@@ -1,0 +1,17 @@
+# Binaries & build artifacts
+bin/
+build/
+*.exe
+*.o
+*.obj
+*.pdb
+*.ilk
+
+# Temporary test files
+test*.txt
+*.tmp
+
+# VS / IDE cache
+.vs/
+.vscode/
+.idea/

@@ -1,0 +1,99 @@
+{
+  "bank": "Gemini Bank Ukraine",
+  "updatedAt": "2026-11-03 19:19:48",
+  "accounts": [
+  {
+    "accountNumber": "UA000000000000000000000000000",
+    "cardNumber": "0000-0000-0000-0000",
+    "username": "admin",
+    "fullName": "Адміністратор Банку",
+    "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "phone": "+380800500000",
+    "email": "admin@geminibool.ua",
+    "balance": 0.00,
+    "currency": "UAH",
+    "isFrozen": false,
+    "isAdmin": true,
+    "createdAt": "2026-11-03 19:17:31",
+    "transactions": [
+    ]
+  },
+  {
+    "accountNumber": "UA323052990000000000000001001",
+    "cardNumber": "4441-5500-0000-1001",
+    "username": "user1",
+    "fullName": "Коваленко Олександр Сергійович",
+    "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "phone": "+380671112233",
+    "email": "kovalenko@example.com",
+    "balance": 24000.00,
+    "currency": "UAH",
+    "isFrozen": false,
+    "isAdmin": false,
+    "createdAt": "2026-11-03 19:17:31",
+    "transactions": [
+      {
+        "id": "TX-6251215-1001",
+        "type": "DEPOSIT",
+        "amount": 25400.00,
+        "balanceAfter": 25400.00,
+        "timestamp": "2026-11-03 19:17:31",
+        "counterparty": "Термінал самообслуговування №12",
+        "description": "Початкове поповнення рахунку"
+      },
+      {
+        "id": "TX-6388320-1001",
+        "type": "WITHDRAW",
+        "amount": 1400.00,
+        "balanceAfter": 24000.00,
+        "timestamp": "2026-11-03 19:19:48",
+        "counterparty": "Мельник Марія Іванівна (4441-5500-0000-1002)",
+        "description": "Повернення боргу"
+      }
+    ]
+  },
+  {
+    "accountNumber": "UA333052990000000000000001002",
+    "cardNumber": "4441-5500-0000-1002",
+    "username": "user2",
+    "fullName": "Мельник Марія Іванівна",
+    "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "phone": "+380509998877",
+    "email": "melnyk@example.com",
+    "balance": 16250.50,
+    "currency": "UAH",
+    "isFrozen": false,
+    "isAdmin": false,
+    "createdAt": "2026-11-03 19:17:31",
+    "transactions": [
+      {
+        "id": "TX-6251215-1002",
+        "type": "DEPOSIT",
+        "amount": 15000.00,
+        "balanceAfter": 15000.00,
+        "timestamp": "2026-11-03 19:17:31",
+        "counterparty": "Каса відділення банку",
+        "description": "Внесення готівки на депозит"
+      },
+      {
+        "id": "TX-6251215-1003",
+        "type": "WITHDRAW",
+        "amount": 149.50,
+        "balanceAfter": 14850.50,
+        "timestamp": "2026-11-03 19:17:31",
+        "counterparty": "Супермаркет 'Сільпо'",
+        "description": "Оплата покупок"
+      },
+      {
+        "id": "TX-6388320-1002",
+        "type": "DEPOSIT",
+        "amount": 1400.00,
+        "balanceAfter": 16250.50,
+        "timestamp": "2026-11-03 19:19:48",
+        "counterparty": "Коваленко Олександр Сергійович (4441-5500-0000-1001)",
+        "description": "Повернення боргу"
+      }
+    ]
+  }
+  ]
+}
