@@ -28,177 +28,361 @@
         .card-chip {
             background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #b45309 100%);
         }
+        .auth-bg {
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.12), transparent 40%),
+                        #030712;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- Top Navigation -->
-    <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25">
-                    <i class="fa-solid fa-shapes text-lg"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">BANK FORMA TAIL</span>
-                    <span class="hidden sm:inline-block ml-2 px-2.5 py-0.5 text-xs font-bold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">C++20 Core</span>
-                </div>
+    <!-- ============================================================== -->
+    <!-- ЭКРАН 1: АВТОРИЗАЦИЯ И РЕГИСТРАЦИЯ (LOGIN / REGISTER VIEW)       -->
+    <!-- ============================================================== -->
+    <div id="authScreen" class="min-h-screen auth-bg flex flex-col justify-center items-center p-4 sm:p-6 transition-all duration-500">
+        <!-- Logo Header -->
+        <div class="flex items-center space-x-3 mb-8">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl shadow-indigo-500/30">
+                <i class="fa-solid fa-shapes text-xl"></i>
             </div>
-
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60 text-xs">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-slate-300 font-medium">Система онлайн</span>
-                </div>
-                <!-- Profile Switcher -->
-                <div class="flex items-center space-x-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/60">
-                    <button onclick="switchUser('user1')" id="btnU1" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition">user1</button>
-                    <button onclick="switchUser('user2')" id="btnU2" class="px-2.5 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">user2</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        
-        <!-- Welcome Hero Banner -->
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gradient-to-r from-indigo-950/40 via-slate-900/60 to-purple-950/20 p-6 rounded-2xl border border-indigo-900/30">
             <div>
-                <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-0.5 text-[11px] font-bold uppercase rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Forma Tail Private</span>
-                    <span class="text-xs text-slate-400">Преміальне банківське обслуговування</span>
-                </div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1" id="greetingName">Вітаємо, Олександр!</h1>
-                <p class="text-slate-400 text-sm mt-1">Огляд рахунку, миттєві перекази та фінансовий контроль у режимі реального часу.</p>
-            </div>
-            <div class="flex gap-2 w-full sm:w-auto">
-                <button onclick="openModal('deposit')" class="flex-1 sm:flex-initial px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-plus"></i> Поповнити
-                </button>
-                <button onclick="openModal('transfer')" class="flex-1 sm:flex-initial px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-indigo-500/20 transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-arrow-right-arrow-left"></i> Переказ
-                </button>
+                <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">BANK FORMA TAIL</span>
+                <span class="block text-xs font-semibold text-slate-400">Преміальний цифровий банкінг • C++20</span>
             </div>
         </div>
 
-        <!-- Cards & Balance Overview -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <!-- Virtual Plastic Debit Card -->
-            <div class="lg:col-span-1">
-                <div class="card-forma rounded-2xl p-6 text-white relative overflow-hidden flex flex-col justify-between h-[235px] border border-indigo-400/20 select-none">
-                    <!-- Ambient Glow -->
-                    <div class="absolute -right-8 -top-8 w-44 h-44 bg-indigo-500/20 rounded-full blur-3xl"></div>
-                    <div class="absolute -left-8 -bottom-8 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl"></div>
-
-                    <div class="flex justify-between items-start relative z-10">
-                        <div>
-                            <span class="text-[10px] tracking-widest font-extrabold uppercase text-indigo-300">BANK FORMA TAIL</span>
-                            <div class="text-xs font-medium text-slate-300">Black Platinum Edition</div>
-                        </div>
-                        <div class="text-right">
-                            <span class="font-extrabold text-xl italic tracking-wider">VISA</span>
-                            <span class="block text-[8px] uppercase tracking-widest -mt-1 text-indigo-300">Infinite</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 relative z-10 my-auto">
-                        <div class="card-chip w-11 h-8 rounded-md border border-amber-300/80 shadow-md flex items-center justify-center">
-                            <div class="w-7 h-5 border border-amber-900/40 rounded-sm"></div>
-                        </div>
-                        <i class="fa-solid fa-wifi rotate-90 text-white/80 text-sm"></i>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="font-mono text-xl font-bold tracking-widest text-white drop-shadow" id="cardNumberDisplay">
-                            4441 •••• •••• 1001
-                        </div>
-                        <div class="flex justify-between items-end mt-2 text-xs">
-                            <div>
-                                <div class="text-[9px] uppercase tracking-wider text-indigo-300">Власник</div>
-                                <div class="font-bold tracking-wide" id="cardHolderDisplay">KOVALENKO OLEKSANDR</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-[9px] uppercase tracking-wider text-indigo-300">Термін</div>
-                                <div class="font-bold font-mono">12/29</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Auth Card Container -->
+        <div class="glass max-w-md w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <!-- Tabs -->
+            <div class="flex border-b border-slate-800 mb-6">
+                <button onclick="setAuthTab('login')" id="tabBtnLogin" class="flex-1 pb-3 text-sm font-bold text-indigo-400 border-b-2 border-indigo-500 transition">
+                    Вхід у кабінет
+                </button>
+                <button onclick="setAuthTab('register')" id="tabBtnRegister" class="flex-1 pb-3 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition">
+                    Відкрити рахунок
+                </button>
             </div>
 
-            <!-- Balance & Financial Stats -->
-            <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="glass rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Поточний Баланс</span>
-                        <div class="text-3xl sm:text-4xl font-extrabold text-white mt-2" id="userBalanceDisplay">24 000.00 ₴</div>
-                        <div class="flex items-center gap-1.5 text-xs text-emerald-400 mt-2 font-medium">
-                            <i class="fa-solid fa-shield-halved"></i> Гарантовано Фондом гарантування вкладів
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 flex flex-col gap-1">
-                        <span class="text-slate-500">Офіційний IBAN рахунку:</span>
-                        <span class="font-mono text-slate-200 font-semibold" id="userIbanDisplay">UA323052990000000000000001001</span>
-                    </div>
-                </div>
-
-                <div class="glass rounded-2xl p-6 flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Безпека та Сховище</span>
-                        <div class="flex items-center gap-2 mt-2">
-                            <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50"></span>
-                            <span class="text-lg font-bold text-white">Рахунок АКТИВНИЙ</span>
-                        </div>
-                        <div class="text-xs text-slate-400 mt-2">Хешування паролів: SHA-256 (NIST Standard)</div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-xs">
-                        <span class="text-slate-400">Файл БД:</span>
-                        <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-mono text-[11px]">data/bank_data.json</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Transaction History Table -->
-        <div class="glass rounded-2xl p-6 space-y-4">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <!-- LOGIN FORM -->
+            <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <div>
-                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-receipt text-indigo-400"></i> Журнал останніх операцій
-                    </h2>
-                    <p class="text-xs text-slate-400">Усі рухи коштів та фіскальні чеки</p>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Логін користувача</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3.5 top-3 text-slate-500 text-sm"></i>
+                        <input type="text" id="loginUsername" required placeholder="user1" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
+                    </div>
                 </div>
-                <div class="flex gap-2">
-                    <button onclick="downloadStatement()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-medium transition flex items-center gap-1.5 border border-slate-700">
-                        <i class="fa-solid fa-file-arrow-down text-indigo-400"></i> Експорт виписки (.txt)
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Пароль</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3.5 top-3 text-slate-500 text-sm"></i>
+                        <input type="password" id="loginPassword" required placeholder="••••" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
+                        <button type="button" onclick="togglePassVisibility('loginPassword', 'eyeIcon1')" class="absolute right-3.5 top-3 text-slate-400 hover:text-white">
+                            <i id="eyeIcon1" class="fa-solid fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginErrorMsg" class="hidden text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded-xl"></div>
+
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600 hover:from-indigo-400 hover:to-purple-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-500/25 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Увійти в кабінет
+                </button>
+
+                <!-- Quick Test Buttons -->
+                <div class="pt-4 border-t border-slate-800">
+                    <span class="block text-[11px] font-bold uppercase text-slate-400 text-center mb-2.5">Швидкий тестовий вхід в 1 клік:</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="quickFillLogin('user1', '1234')" class="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-left transition group">
+                            <div class="text-xs font-bold text-indigo-300 group-hover:text-indigo-200">user1</div>
+                            <div class="text-[10px] text-slate-400">Олександр (пароль: 1234)</div>
+                        </button>
+                        <button type="button" onclick="quickFillLogin('user2', '1234')" class="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-left transition group">
+                            <div class="text-xs font-bold text-indigo-300 group-hover:text-indigo-200">user2</div>
+                            <div class="text-[10px] text-slate-400">Марія (пароль: 1234)</div>
+                        </button>
+                    </div>
+                    <button type="button" onclick="quickFillLogin('admin', 'admin123')" class="w-full mt-2 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-center text-xs font-bold text-amber-400 hover:text-amber-300 transition">
+                        <i class="fa-solid fa-crown mr-1"></i> Вхід як Адміністратор (admin)
+                    </button>
+                </div>
+            </form>
+
+            <!-- REGISTRATION FORM -->
+            <form id="registerForm" onsubmit="handleRegisterSubmit(event)" class="space-y-3.5 hidden">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">ПІБ Клієнта</label>
+                    <input type="text" id="regFullName" required placeholder="Шевченко Тарас Григорович" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Бажаний логін</label>
+                    <input type="text" id="regUsername" required placeholder="shevchenko" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Пароль</label>
+                    <input type="password" id="regPassword" required placeholder="Встановіть пароль" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Початковий баланс (грн)</label>
+                    <input type="number" id="regInitialBalance" value="10000" min="0" step="100" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+                </div>
+
+                <div id="regErrorMsg" class="hidden text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 px-3 py-2 rounded-xl"></div>
+
+                <button type="submit" class="w-full py-3 mt-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-credit-card"></i> Відкрити картку та рахунок
+                </button>
+            </form>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-6">© 2026 Bank Forma Tail. Безпека гарантована стандартом SHA-256.</p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- ЭКРАН 2: ЛИЧНЫЙ КАБИНЕТ КЛИЕНТА (DASHBOARD VIEW)                -->
+    <!-- ============================================================== -->
+    <div id="dashboardScreen" class="min-h-screen flex flex-col hidden transition-all duration-500">
+        <!-- Top Navigation -->
+        <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25">
+                        <i class="fa-solid fa-shapes text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent">BANK FORMA TAIL</span>
+                        <span class="hidden sm:inline-block ml-2 px-2.5 py-0.5 text-xs font-bold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">C++20 Core</span>
+                    </div>
+                </div>
+
+                <!-- User Profile & Log Out Button -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-3 pl-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white" id="userAvatarText">ОК</div>
+                        <div class="hidden md:block text-left">
+                            <div class="text-xs font-bold text-slate-200" id="userDisplayName">Олександр Коваленко</div>
+                            <div class="text-[10px] text-slate-400" id="userRoleBadge">user1 • Преміум клієнт</div>
+                        </div>
+                    </div>
+
+                    <!-- LOG OUT BUTTON -->
+                    <button onclick="handleLogout()" class="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 text-xs font-bold border border-rose-500/30 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span class="hidden sm:inline">Вийти з акаунта</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            
+            <!-- Welcome Hero Banner -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gradient-to-r from-indigo-950/40 via-slate-900/60 to-purple-950/20 p-6 rounded-2xl border border-indigo-900/30">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 text-[11px] font-bold uppercase rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Forma Tail Private</span>
+                        <span class="text-xs text-slate-400">Преміальне банківське обслуговування</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1" id="greetingName">Вітаємо, Олександр!</h1>
+                    <p class="text-slate-400 text-sm mt-1">Огляд рахунку, миттєві перекази та фінансовий контроль у режимі реального часу.</p>
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto">
+                    <button onclick="openModal('deposit')" class="flex-1 sm:flex-initial px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-plus"></i> Поповнити
+                    </button>
+                    <button onclick="openModal('transfer')" class="flex-1 sm:flex-initial px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-indigo-500/20 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i> Переказ
                     </button>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-300">
-                    <thead class="text-xs uppercase bg-slate-800/50 text-slate-400 border-b border-slate-800 font-semibold">
-                        <tr>
-                            <th class="px-4 py-3">Дата і час</th>
-                            <th class="px-4 py-3">Тип операції</th>
-                            <th class="px-4 py-3">Контрагент / Призначення</th>
-                            <th class="px-4 py-3 text-right">Сума</th>
-                            <th class="px-4 py-3 text-right">Залишок</th>
-                            <th class="px-4 py-3 text-center">Статус</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-800/60" id="txTableBody">
-                        <!-- Populated by JS -->
-                    </tbody>
-                </table>
+            <!-- Cards & Balance Overview -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Virtual Plastic Debit Card -->
+                <div class="lg:col-span-1">
+                    <div class="card-forma rounded-2xl p-6 text-white relative overflow-hidden flex flex-col justify-between h-[235px] border border-indigo-400/20 select-none">
+                        <!-- Ambient Glow -->
+                        <div class="absolute -right-8 -top-8 w-44 h-44 bg-indigo-500/20 rounded-full blur-3xl"></div>
+                        <div class="absolute -left-8 -bottom-8 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+                        <div class="flex justify-between items-start relative z-10">
+                            <div>
+                                <span class="text-[10px] tracking-widest font-extrabold uppercase text-indigo-300">BANK FORMA TAIL</span>
+                                <div class="text-xs font-medium text-slate-300">Black Platinum Edition</div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-extrabold text-xl italic tracking-wider">VISA</span>
+                                <span class="block text-[8px] uppercase tracking-widest -mt-1 text-indigo-300">Infinite</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 relative z-10 my-auto">
+                            <div class="card-chip w-11 h-8 rounded-md border border-amber-300/80 shadow-md flex items-center justify-center">
+                                <div class="w-7 h-5 border border-amber-900/40 rounded-sm"></div>
+                            </div>
+                            <i class="fa-solid fa-wifi rotate-90 text-white/80 text-sm"></i>
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="font-mono text-xl font-bold tracking-widest text-white drop-shadow" id="cardNumberDisplay">
+                                4441 •••• •••• 1001
+                            </div>
+                            <div class="flex justify-between items-end mt-2 text-xs">
+                                <div>
+                                    <div class="text-[9px] uppercase tracking-wider text-indigo-300">Власник</div>
+                                    <div class="font-bold tracking-wide" id="cardHolderDisplay">KOVALENKO OLEKSANDR</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-[9px] uppercase tracking-wider text-indigo-300">Термін</div>
+                                    <div class="font-bold font-mono">12/29</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Balance & Financial Stats -->
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Поточний Баланс</span>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-white mt-2" id="userBalanceDisplay">24 000.00 ₴</div>
+                            <div class="flex items-center gap-1.5 text-xs text-emerald-400 mt-2 font-medium">
+                                <i class="fa-solid fa-shield-halved"></i> Гарантовано Фондом гарантування вкладів
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 flex flex-col gap-1">
+                            <span class="text-slate-500">Офіційний IBAN рахунку:</span>
+                            <span class="font-mono text-slate-200 font-semibold" id="userIbanDisplay">UA323052990000000000000001001</span>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Безпека та Сховище</span>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50"></span>
+                                <span class="text-lg font-bold text-white">Рахунок АКТИВНИЙ</span>
+                            </div>
+                            <div class="text-xs text-slate-400 mt-2">Хешування паролів: SHA-256 (NIST Standard)</div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Файл БД:</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-mono text-[11px]">data/bank_data.json</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-    </main>
+            <!-- Transaction History Table -->
+            <div class="glass rounded-2xl p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-receipt text-indigo-400"></i> Журнал останніх операцій
+                        </h2>
+                        <p class="text-xs text-slate-400">Усі рухи коштів та фіскальні чеки</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="downloadStatement()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-medium transition flex items-center gap-1.5 border border-slate-700">
+                            <i class="fa-solid fa-file-arrow-down text-indigo-400"></i> Експорт виписки (.txt)
+                        </button>
+                    </div>
+                </div>
 
-    <!-- Transfer / Deposit Modal -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="text-xs uppercase bg-slate-800/50 text-slate-400 border-b border-slate-800 font-semibold">
+                            <tr>
+                                <th class="px-4 py-3">Дата і час</th>
+                                <th class="px-4 py-3">Тип операції</th>
+                                <th class="px-4 py-3">Контрагент / Призначення</th>
+                                <th class="px-4 py-3 text-right">Сума</th>
+                                <th class="px-4 py-3 text-right">Залишок</th>
+                                <th class="px-4 py-3 text-center">Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60" id="txTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-800/80 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
+            <p>© 2026 Bank Forma Tail. Всі права захищені. Розроблено на C++20 з відкритим кодом.</p>
+        </footer>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- ЭКРАН 3: ПАНЕЛЬ АДМИНИСТРАТОРА (ADMIN DASHBOARD VIEW)           -->
+    <!-- ============================================================== -->
+    <div id="adminScreen" class="min-h-screen flex flex-col hidden transition-all duration-500">
+        <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-white">BANK FORMA TAIL</span>
+                        <span class="ml-2 px-2.5 py-0.5 text-xs font-bold rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">Адміністратор</span>
+                    </div>
+                </div>
+
+                <button onclick="handleLogout()" class="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 text-xs font-bold border border-rose-500/30 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Вийти з адмінки
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <div class="glass p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Панель Управління Банком</h1>
+                    <p class="text-xs text-slate-400">Моніторинг ліквідності та клієнтських акаунтів</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-slate-400 uppercase font-semibold">Загальний капітал банку:</span>
+                    <div class="text-3xl font-extrabold text-emerald-400" id="adminTotalReserves">40 250.50 ₴</div>
+                </div>
+            </div>
+
+            <!-- Clients List -->
+            <div class="glass p-6 rounded-2xl space-y-4">
+                <h2 class="text-lg font-bold text-white">Зареєстровані клієнти банку</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="text-xs uppercase bg-slate-800/50 text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="px-4 py-3">Логін</th>
+                                <th class="px-4 py-3">ПІБ</th>
+                                <th class="px-4 py-3">Номер картки</th>
+                                <th class="px-4 py-3">IBAN</th>
+                                <th class="px-4 py-3 text-right">Баланс</th>
+                                <th class="px-4 py-3 text-center">Статус</th>
+                                <th class="px-4 py-3 text-center">Дії</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60" id="adminClientsTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- МОДАЛЬНОЕ ОКНО ОПЕРАЦИЙ (TRANSFER / DEPOSIT MODAL)              -->
+    <!-- ============================================================== -->
     <div id="actionModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
             <div class="flex justify-between items-center">
@@ -234,19 +418,29 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800/80 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
-        <p>© 2026 Bank Forma Tail. Всі права захищені. Розроблено на C++20 з відкритим кодом.</p>
-    </footer>
-
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT: УПРАВЛЕНИЕ АВТОРИЗАЦИЕЙ, ВЫХОДОМ И ОПЕРАЦИЯМИ      -->
+    <!-- ============================================================== -->
     <script>
-        let currentModalMode = 'transfer';
-        let currentUserId = 'user1';
-
-        const accountsData = {
+        // Initial persistent database in localStorage
+        const defaultAccounts = {
+            admin: {
+                name: "Головний Адміністратор",
+                username: "admin",
+                password: "admin123",
+                isAdmin: true,
+                isFrozen: false,
+                cardNumber: "0000-0000-0000-0000",
+                iban: "UA000000000000000000000000000",
+                balance: 0.0,
+                transactions: []
+            },
             user1: {
                 name: "Олександр Коваленко",
                 username: "user1",
+                password: "1234",
+                isAdmin: false,
+                isFrozen: false,
                 cardNumber: "4441-5500-0000-1001",
                 iban: "UA323052990000000000000001001",
                 balance: 24000.00,
@@ -272,6 +466,9 @@
             user2: {
                 name: "Марія Мельник",
                 username: "user2",
+                password: "1234",
+                isAdmin: false,
+                isFrozen: false,
                 cardNumber: "4441-5500-0000-1002",
                 iban: "UA333052990000000000000001002",
                 balance: 16250.50,
@@ -304,20 +501,197 @@
             }
         };
 
-        function switchUser(userId) {
-            currentUserId = userId;
-            document.getElementById('btnU1').className = userId === 'user1' 
-                ? "px-2.5 py-1 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition"
-                : "px-2.5 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition";
-            document.getElementById('btnU2').className = userId === 'user2' 
-                ? "px-2.5 py-1 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition"
-                : "px-2.5 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition";
-            renderUI();
+        // Load accounts from storage or use defaults
+        function getAccounts() {
+            try {
+                const stored = localStorage.getItem('forma_accounts');
+                if (stored) return JSON.parse(stored);
+            } catch (e) {}
+            return defaultAccounts;
         }
 
-        function renderUI() {
-            const user = accountsData[currentUserId];
+        function saveAccounts(accounts) {
+            try {
+                localStorage.setItem('forma_accounts', JSON.stringify(accounts));
+            } catch (e) {}
+        }
+
+        let accounts = getAccounts();
+        let currentSessionUser = null;
+        let currentModalMode = 'transfer';
+
+        // Initialize state
+        function initApp() {
+            // Check if active session exists in sessionStorage
+            const session = sessionStorage.getItem('forma_active_user');
+            if (session && accounts[session]) {
+                loginAs(accounts[session]);
+            } else {
+                showAuthScreen();
+            }
+        }
+
+        // Show/Hide Screens
+        function showAuthScreen() {
+            document.getElementById('authScreen').classList.remove('hidden');
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('adminScreen').classList.add('hidden');
+            currentSessionUser = null;
+            sessionStorage.removeItem('forma_active_user');
+        }
+
+        function setAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const regForm = document.getElementById('registerForm');
+            const tabBtnLogin = document.getElementById('tabBtnLogin');
+            const tabBtnRegister = document.getElementById('tabBtnRegister');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                regForm.classList.add('hidden');
+                tabBtnLogin.className = "flex-1 pb-3 text-sm font-bold text-indigo-400 border-b-2 border-indigo-500 transition";
+                tabBtnRegister.className = "flex-1 pb-3 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition";
+            } else {
+                loginForm.classList.add('hidden');
+                regForm.classList.remove('hidden');
+                tabBtnRegister.className = "flex-1 pb-3 text-sm font-bold text-indigo-400 border-b-2 border-indigo-500 transition";
+                tabBtnLogin.className = "flex-1 pb-3 text-sm font-semibold text-slate-400 hover:text-slate-200 border-b-2 border-transparent transition";
+            }
+        }
+
+        function togglePassVisibility(inputId, eyeIconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(eyeIconId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash text-sm';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-solid fa-eye text-sm';
+            }
+        }
+
+        function quickFillLogin(u, p) {
+            document.getElementById('loginUsername').value = u;
+            document.getElementById('loginPassword').value = p;
+            document.getElementById('loginErrorMsg').classList.add('hidden');
+            handleLoginSubmit(new Event('submit'));
+        }
+
+        // Handle Login
+        function handleLoginSubmit(e) {
+            if (e) e.preventDefault();
+            const u = document.getElementById('loginUsername').value.trim();
+            const p = document.getElementById('loginPassword').value.trim();
+            const errBox = document.getElementById('loginErrorMsg');
+
+            accounts = getAccounts();
+            const user = accounts[u];
+
+            if (!user || user.password !== p) {
+                errBox.textContent = "Невірний логін або пароль. Перевірте дані!";
+                errBox.classList.remove('hidden');
+                return;
+            }
+
+            if (user.isFrozen) {
+                errBox.textContent = "Ваш рахунок заблоковано банком. Зверніться до підтримки!";
+                errBox.classList.remove('hidden');
+                return;
+            }
+
+            errBox.classList.add('hidden');
+            loginAs(user);
+        }
+
+        // Login transition
+        function loginAs(user) {
+            currentSessionUser = user;
+            sessionStorage.setItem('forma_active_user', user.username);
+
+            document.getElementById('authScreen').classList.add('hidden');
+
+            if (user.isAdmin) {
+                document.getElementById('dashboardScreen').classList.add('hidden');
+                document.getElementById('adminScreen').classList.remove('hidden');
+                renderAdminUI();
+            } else {
+                document.getElementById('adminScreen').classList.add('hidden');
+                document.getElementById('dashboardScreen').classList.remove('hidden');
+                renderClientUI();
+            }
+        }
+
+        // Handle Logout
+        function handleLogout() {
+            sessionStorage.removeItem('forma_active_user');
+            currentSessionUser = null;
+            document.getElementById('loginPassword').value = '';
+            showAuthScreen();
+        }
+
+        // Handle Registration
+        function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('regFullName').value.trim();
+            const u = document.getElementById('regUsername').value.trim();
+            const p = document.getElementById('regPassword').value.trim();
+            const initBal = parseFloat(document.getElementById('regInitialBalance').value) || 0;
+            const errBox = document.getElementById('regErrorMsg');
+
+            accounts = getAccounts();
+            if (accounts[u]) {
+                errBox.textContent = "Користувач із таким логіном вже існує!";
+                errBox.classList.remove('hidden');
+                return;
+            }
+
+            const randNum = Math.floor(1000 + Math.random() * 9000);
+            const newCard = `4441-5500-${randNum}-7788`;
+            const newIban = `UA29305299000000000000000${randNum}`;
+
+            const newAcc = {
+                name: name,
+                username: u,
+                password: p,
+                isAdmin: false,
+                isFrozen: false,
+                cardNumber: newCard,
+                iban: newIban,
+                balance: initBal,
+                transactions: []
+            };
+
+            if (initBal > 0) {
+                newAcc.transactions.push({
+                    time: new Date().toISOString().replace('T', ' ').substring(0, 19),
+                    type: "DEPOSIT",
+                    counterparty: "Каса банку Forma Tail",
+                    desc: "Первинне зарахування",
+                    amount: initBal,
+                    balanceAfter: initBal
+                });
+            }
+
+            accounts[u] = newAcc;
+            saveAccounts(accounts);
+
+            errBox.classList.add('hidden');
+            alert(`[✓] Рахунок успішно відкрито!\n\nВласник: ${name}\nКартка: ${newCard}\nIBAN: ${newIban}`);
+            loginAs(newAcc);
+        }
+
+        // Client UI Rendering
+        function renderClientUI() {
+            const user = currentSessionUser;
             document.getElementById('greetingName').textContent = `Вітаємо, ${user.name.split(' ')[0]}!`;
+            document.getElementById('userDisplayName').textContent = user.name;
+            document.getElementById('userRoleBadge').textContent = `${user.username} • Преміум клієнт`;
+
+            // Initials
+            const initials = user.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+            document.getElementById('userAvatarText').textContent = initials;
+
             document.getElementById('cardHolderDisplay').textContent = user.name.toUpperCase();
             document.getElementById('cardNumberDisplay').textContent = user.cardNumber;
             document.getElementById('userBalanceDisplay').textContent = user.balance.toLocaleString('uk-UA', { minimumFractionDigits: 2 }) + ' ₴';
@@ -325,6 +699,11 @@
 
             const tbody = document.getElementById('txTableBody');
             tbody.innerHTML = '';
+
+            if (user.transactions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">Операцій по рахунку ще не було.</td></tr>`;
+                return;
+            }
 
             user.transactions.forEach(tx => {
                 const isPositive = tx.type === 'DEPOSIT' || tx.type === 'TRANSFER_IN';
@@ -348,6 +727,52 @@
             });
         }
 
+        // Admin UI Rendering
+        function renderAdminUI() {
+            accounts = getAccounts();
+            let total = 0;
+            const tbody = document.getElementById('adminClientsTableBody');
+            tbody.innerHTML = '';
+
+            Object.values(accounts).forEach(acc => {
+                if (!acc.isAdmin) {
+                    total += acc.balance;
+                    const row = document.createElement('tr');
+                    row.className = "hover:bg-slate-800/30 transition";
+                    row.innerHTML = `
+                        <td class="px-4 py-3 font-bold text-indigo-300">${acc.username}</td>
+                        <td class="px-4 py-3 text-white">${acc.name}</td>
+                        <td class="px-4 py-3 font-mono text-xs text-slate-300">${acc.cardNumber}</td>
+                        <td class="px-4 py-3 font-mono text-xs text-slate-400">${acc.iban}</td>
+                        <td class="px-4 py-3 text-right font-bold text-emerald-400">${acc.balance.toLocaleString('uk-UA', { minimumFractionDigits: 2 })} ₴</td>
+                        <td class="px-4 py-3 text-center">
+                            <span class="px-2 py-0.5 text-xs font-semibold rounded ${acc.isFrozen ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}">
+                                ${acc.isFrozen ? 'ЗАБЛОКОВАНО' : 'АКТИВНИЙ'}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-center">
+                            <button onclick="toggleFreezeAccount('${acc.username}')" class="px-2.5 py-1 text-xs font-semibold rounded-lg ${acc.isFrozen ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-rose-600 hover:bg-rose-500 text-white'} transition">
+                                ${acc.isFrozen ? 'Розблокувати' : 'Заблокувати'}
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+
+            document.getElementById('adminTotalReserves').textContent = total.toLocaleString('uk-UA', { minimumFractionDigits: 2 }) + ' ₴';
+        }
+
+        function toggleFreezeAccount(u) {
+            accounts = getAccounts();
+            if (accounts[u]) {
+                accounts[u].isFrozen = !accounts[u].isFrozen;
+                saveAccounts(accounts);
+                renderAdminUI();
+            }
+        }
+
+        // Modals
         function openModal(mode) {
             currentModalMode = mode;
             const modal = document.getElementById('actionModal');
@@ -369,10 +794,10 @@
         }
 
         function executeModalAction() {
-            const user = accountsData[currentUserId];
+            const user = currentSessionUser;
             const amount = parseFloat(document.getElementById('modalAmount').value);
             const comment = document.getElementById('modalComment').value || (currentModalMode === 'deposit' ? 'Внесення через термінал' : 'Приватний платіж');
-            const recipient = document.getElementById('modalRecipient').value || (currentUserId === 'user1' ? 'user2' : 'user1');
+            const recipientInput = document.getElementById('modalRecipient').value.trim();
 
             if (!amount || amount <= 0) {
                 alert('Введіть коректну суму!');
@@ -396,38 +821,52 @@
                     alert('Недостатньо коштів на рахунку!');
                     return;
                 }
+
+                // Check recipient
+                accounts = getAccounts();
+                let recipientAcc = null;
+                for (const acc of Object.values(accounts)) {
+                    if (acc.username === recipientInput || acc.cardNumber === recipientInput || acc.iban === recipientInput) {
+                        recipientAcc = acc;
+                        break;
+                    }
+                }
+
+                const recipTitle = recipientAcc ? `${recipientAcc.name} (${recipientAcc.cardNumber})` : recipientInput;
+
                 user.balance -= amount;
                 user.transactions.unshift({
                     time: now,
                     type: 'TRANSFER_OUT',
-                    counterparty: recipient,
+                    counterparty: recipTitle,
                     desc: comment,
                     amount: amount,
                     balanceAfter: user.balance
                 });
 
-                // Also deposit to target if it's the other demo user
-                const otherUserId = currentUserId === 'user1' ? 'user2' : 'user1';
-                if (recipient.includes(otherUserId) || recipient.includes('user')) {
-                    const otherUser = accountsData[otherUserId];
-                    otherUser.balance += amount;
-                    otherUser.transactions.unshift({
+                if (recipientAcc && recipientAcc.username !== user.username) {
+                    recipientAcc.balance += amount;
+                    recipientAcc.transactions.unshift({
                         time: now,
                         type: 'TRANSFER_IN',
-                        counterparty: user.name + " (" + user.cardNumber + ")",
+                        counterparty: `${user.name} (${user.cardNumber})`,
                         desc: comment,
                         amount: amount,
-                        balanceAfter: otherUser.balance
+                        balanceAfter: recipientAcc.balance
                     });
+                    accounts[recipientAcc.username] = recipientAcc;
                 }
             }
 
+            accounts[user.username] = user;
+            saveAccounts(accounts);
+
             closeModal();
-            renderUI();
+            renderClientUI();
         }
 
         function downloadStatement() {
-            const user = accountsData[currentUserId];
+            const user = currentSessionUser;
             let content = "========================================================================================\n";
             content += "                                ОФІЦІЙНА ВИПИСКА ПО РАХУНКУ                              \n";
             content += "                                     \"BANK FORMA TAIL\"                                  \n";
@@ -447,7 +886,8 @@
             a.click();
         }
 
-        renderUI();
+        // Start App
+        initApp();
     </script>
 </body>
 </html>
